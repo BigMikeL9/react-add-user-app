@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import UserForm from "./components/User/UserForm";
+import UserList from "./components/User/UserList";
 
 function App() {
+  const [userData, setUserData] = useState("");
+
+  const submitUserDataHandler = (data) => {
+    const userData = {
+      key: Date.now().toString(),
+      username: data.username,
+      age: data.age,
+    };
+
+    // -- ⭐⭐⭐⭐ --
+    setUserData((prevUserData) => [userData, ...prevUserData]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UserForm onSubmitUserData={submitUserDataHandler} />
+
+      <UserList userData={userData} />
+    </>
   );
 }
 

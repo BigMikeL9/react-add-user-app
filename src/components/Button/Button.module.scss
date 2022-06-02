@@ -1,0 +1,18 @@
+.button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: #ff4d5a;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: #922d34;
+  }
+
+  &:active {
+    background-color: #421c1f;
+  }
+}

@@ -1,0 +1,24 @@
+.form {
+  font-size: 1.2rem;
+
+  & > * {
+    display: block;
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+
+  label {
+    font-weight: 700;
+  }
+
+  input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+}

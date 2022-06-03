@@ -7,9 +7,9 @@ const User = (props) => {
   //   console.log(props);
 
   return (
-    <div className={styles.user}>
-      {`${props.username} (${props.age} Years Old)`}{" "}
-    </div>
+    <li className={styles.user}>
+      {`${props.username} (${props.age} Years Old)`}
+    </li>
   );
 };
 

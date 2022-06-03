@@ -4,4 +4,11 @@
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.message {
+  font-size: 1.2rem;
+  font-weight: 700;
 }

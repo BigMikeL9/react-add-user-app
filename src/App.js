@@ -7,6 +7,8 @@ function App() {
   const [userData, setUserData] = useState("");
 
   const submitUserDataHandler = (data) => {
+    // console.log(data);
+
     const userData = {
       key: Date.now().toString(),
       username: data.username,

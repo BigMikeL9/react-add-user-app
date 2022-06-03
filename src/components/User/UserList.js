@@ -8,14 +8,22 @@ import styles from "./UserList.module.scss";
 const UserList = (props) => {
   //   console.log(props);
 
-  // -- Guard Clause -> Dont execute the rest of the code if no input in entered
-  if (!props.userData) return;
+  // -- Guard Clause -> display message if no users shown
+  if (!props.userData) {
+    return (
+      <Card>
+        <p className={styles.message}>Please enter a Username and Age 😇</p>
+      </Card>
+    );
+  }
 
   return (
-    <Card className={styles["user-list"]}>
-      {props.userData.map((data) => (
-        <User key={data.key} username={data.username} age={data.age}></User>
-      ))}
+    <Card>
+      <ul className={styles["user-list"]}>
+        {props.userData.map((data) => (
+          <User key={data.key} username={data.username} age={data.age}></User>
+        ))}
+      </ul>
     </Card>
   );
 };

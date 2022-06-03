@@ -8,7 +8,11 @@ const Button = (props) => {
   const classes = `${styles.button} ${props.className || ""}`;
 
   return (
-    <button className={classes} type={props.type} onClick={props.onClick}>
+    <button
+      className={classes}
+      type={props.type || "button"}
+      onClick={props.onClick}
+    >
       {props.children}
     </button>
   );

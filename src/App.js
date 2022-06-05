@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import UserForm from "./components/User/UserForm";
 import UserList from "./components/User/UserList";
+import Wrapper from "./components/Helpers/Wrapper";
 
 function App() {
   const [userData, setUserData] = useState("");
@@ -20,11 +21,11 @@ function App() {
   };
 
   return (
-    <>
+    <Wrapper>
       <UserForm onSubmitUserData={submitUserDataHandler} />
 
       <UserList userData={userData} />
-    </>
+    </Wrapper>
   );
 }
 

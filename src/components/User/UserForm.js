@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from "../UI/Card";
 import Button from "../Button/Button";
 import Modal from "../UI/Modal";
@@ -8,8 +8,13 @@ import styles from "./UserForm.module.scss";
 const UserForm = (props) => {
   // console.log(props);
 
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
+  // -- 🟠 USING 'useRef' --
+  const usernameRef = useRef();
+  const ageRef = useRef();
+
+  // -- 🔴 USING 'useState' [not best when we just want to read a value] --
+  // const [enteredUsername, setEnteredUsername] = useState("");
+  // const [enteredAge, setEnteredAge] = useState("");
 
   const [modalState, setModalState] = useState({
     isError: false,
@@ -27,6 +32,10 @@ const UserForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    // -- 🟠 USING 'useRef' --
+    const enteredUsername = usernameRef.current.value;
+    const enteredAge = ageRef.current.value;
 
     // -- onSubmit Validation --
     // -- If no input is entered
@@ -61,17 +70,25 @@ const UserForm = (props) => {
     props.onSubmitUserData(userData);
 
     // -- Resetting inputs --
-    setEnteredUsername("");
-    setEnteredAge("");
+    // -- 🟠 USING 'useRef' [USE this hook when we just want to read a value and not manipulate it] --
+    // 📝 NOTE ->  not good practice to manipulate 'value' through 'useRef', but its okay here with resetting input values
+    usernameRef.current.value = "";
+    ageRef.current.value = "";
+
+    // -- 🔴 USING 'useState' [not best when we just want to read a value] --
+    // setEnteredUsername("");
+    // setEnteredAge("");
   };
 
-  const usernameChangeHandler = (event) => {
-    setEnteredUsername(event.target.value);
-  };
+  // -- 🔴 USING 'useState' [not best when we just want to read a value] --
+  // const usernameChangeHandler = (event) => {
+  //   setEnteredUsername(event.target.value);
+  // };
 
-  const ageChangeHandler = (event) => {
-    setEnteredAge(event.target.value);
-  };
+  // -- 🔴 USING 'useState' [not best when we just want to read a value] --
+  // const ageChangeHandler = (event) => {
+  //   setEnteredAge(event.target.value);
+  // };
 
   return (
     <Card>
@@ -88,19 +105,27 @@ const UserForm = (props) => {
       <form className={styles.form} onSubmit={submitHandler}>
         <label htmlFor="username">Username</label>
         <input
-          type="text"
-          onChange={usernameChangeHandler}
-          value={enteredUsername}
           id="username"
+          type="text"
+          // -- 🟠 USING 'useRef' --
+          ref={usernameRef}
+
+          // -- 🔴 USING 'useState' --
+          // onChange={usernameChangeHandler}
+          // value={enteredUsername}
         />
 
         <label htmlFor="age">Age(Years)</label>
         <input
+          id="age"
           type="number"
           step="1"
-          onChange={ageChangeHandler}
-          value={enteredAge}
-          id="age"
+          // -- 🟠 USING 'useRef' --
+          ref={ageRef}
+
+          // -- 🔴 USING 'useState' --
+          // onChange={ageChangeHandler}
+          // value={enteredAge}
         />
 
         <Button type="submit">Add User</Button>

@@ -1,11 +1,12 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Button from "../Button/Button";
 
 import styles from "./Modal.module.scss";
 
 // console.log(styles);
 
-const Modal = (props) => {
+const ModalWindow = (props) => {
   // console.log(props);
 
   const classes = `${styles.modal} ${styles[props.className] || ""}`;
@@ -31,6 +32,22 @@ const Modal = (props) => {
         </Button>
       </div>
     </div>
+  );
+};
+
+const Modal = (props) => {
+  return (
+    <>
+      {ReactDOM.createPortal(
+        <ModalWindow
+          className={props.className}
+          errorTitle={props.errorTitle}
+          errorMessage={props.errorMessage}
+          onCloseModal={props.onCloseModal}
+        />,
+        document.getElementById("modal-root")
+      )}
+    </>
   );
 };
 
